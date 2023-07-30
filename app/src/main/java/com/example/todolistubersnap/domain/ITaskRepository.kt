@@ -1,14 +1,13 @@
 package com.example.todolistubersnap.domain
 
 import com.example.todolistubersnap.data.Task
-import com.example.todolistubersnap.utils.Status
 import kotlinx.coroutines.flow.Flow
 
 interface ITaskRepository {
 
-    fun getAllTask(): Flow<Status<List<Task>>>
+    fun getAllTask(): Flow<List<Task>>
 
-    fun getTaskById(id: Int): Flow<Status<Task>>
+    fun getTaskById(id: Int): Flow<Task>
 
     suspend fun insertTask(task: Task)
 

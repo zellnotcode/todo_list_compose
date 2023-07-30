@@ -1,14 +1,12 @@
 package com.example.todolistubersnap.domain
 
 import com.example.todolistubersnap.data.Task
-import com.example.todolistubersnap.data.TaskRepository
-import com.example.todolistubersnap.utils.Status
 import kotlinx.coroutines.flow.Flow
 
-class TaskInteractor(private val repository: TaskRepository) : ITaskUseCase {
-    override fun getAllTask(): Flow<Status<List<Task>>> = repository.getAllTask()
+class TaskInteractor(private val repository: ITaskRepository) : ITaskUseCase {
+    override fun getAllTask(): Flow<List<Task>> = repository.getAllTask()
 
-    override fun getTaskById(id: Int): Flow<Status<Task>> = repository.getTaskById(id)
+    override fun getTaskById(id: Int): Flow<Task> = repository.getTaskById(id)
 
     override suspend fun insertTask(task: Task) = repository.insertTask(task)
 
