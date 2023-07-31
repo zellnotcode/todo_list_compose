@@ -2,8 +2,9 @@ package com.example.todolistubersnap.data
 
 import com.example.todolistubersnap.domain.ITaskRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class TaskRepository(private val taskDao: TaskDao) : ITaskRepository {
+class TaskRepository @Inject constructor(private val taskDao: TaskDao) : ITaskRepository {
 
     override fun getAllTask(): Flow<List<Task>> = taskDao.getAllTask()
 
