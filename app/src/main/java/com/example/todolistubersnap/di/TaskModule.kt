@@ -11,6 +11,7 @@ import com.example.todolistubersnap.domain.TaskInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -20,7 +21,7 @@ class TaskModule {
 
     @Provides
     @Singleton
-    fun provideRoom(context: Context): TaskDatabase {
+    fun provideRoom(@ApplicationContext context: Context): TaskDatabase {
         return Room.databaseBuilder(context, TaskDatabase::class.java, "db_task").build()
     }
 

@@ -21,11 +21,12 @@ class TaskViewModel @Inject constructor(private val iTaskUseCase: ITaskUseCase) 
     val selectedTaskState = _selectedTaskState.asStateFlow()
 
     private val _showSnackBar = MutableStateFlow<String?>(null)
-    val showSnackBar = _showSnackBar.asStateFlow()
 
+    init {
+        getAllTasks()
+    }
 
-
-    fun getAllTasks() {
+    private fun getAllTasks() {
         viewModelScope.launch {
             try {
                 _tasksState.value = Status.Loading
@@ -66,6 +67,17 @@ class TaskViewModel @Inject constructor(private val iTaskUseCase: ITaskUseCase) 
         }
     }
 
+    fun updateTask(task: Task) {
+        viewModelScope.launch {
+            try {
+                iTaskUseCase.updateTask(task)
+                _showSnackBar.value = "Task inserted successfully"
+            } catch (e: Exception) {
+                _showSnackBar.value = "Error inserting task"
+            }
+        }
+    }
+
     fun deleteTask(task: Task) {
         viewModelScope.launch {
             try {
@@ -75,9 +87,5 @@ class TaskViewModel @Inject constructor(private val iTaskUseCase: ITaskUseCase) 
                 _showSnackBar.value = "Error deleting task"
             }
         }
-    }
-
-    fun onSnackBarShown() {
-        _showSnackBar.value = null
     }
 }

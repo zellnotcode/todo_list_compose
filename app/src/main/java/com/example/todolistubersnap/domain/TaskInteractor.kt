@@ -11,5 +11,6 @@ class TaskInteractor @Inject constructor(private val repository: ITaskRepository
 
     override suspend fun insertTask(task: Task) = repository.insertTask(task)
 
+    override suspend fun updateTask(task: Task) = repository.updateTask(task)
     override suspend fun deleteTask(task: Task) = repository.deleteTask(task)
 }
