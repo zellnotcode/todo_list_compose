@@ -26,7 +26,7 @@ class TaskViewModel @Inject constructor(private val iTaskUseCase: ITaskUseCase) 
         getAllTasks()
     }
 
-    private fun getAllTasks() {
+     fun getAllTasks() {
         viewModelScope.launch {
             try {
                 _tasksState.value = Status.Loading
